@@ -39,13 +39,28 @@ window.addEventListener('load', (event) => {
   });
 
   // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+  const memoryBoard = document.querySelector('#memory-board');memoryBoard.innerHTML = html;
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      handleCardClick(card);
     });
   });
-});
+
+      function handleCardClick(cardElement) {
+        if (memoryGame.pickedCards.length === 2) {
+          return;
+        }
+        const cardName = cardElement.getAttribute('data-card-name');
+        const cardFlipped = cardElement.classList.includes('turned');
+
+        if (!cardFlipped) {
+          cardElement.classList.add('turned');
+          memoryGame.pickedCards.push(cardName);
+        
+      }
+      // TODO: write some code here
+      console.log(`Card clicked: ${card}`);
+    }
+  });
